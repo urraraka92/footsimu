@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101114">
+  <meta name="description" content="FootSimu Premium — programme de football et simulations de scores hebdomadaires.">
+  <title>FootSimu — Match intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="FootSimu accueil"><span class="brand-mark" aria-hidden="true">⚽</span><span class="brand-title">FootSimu<small>MATCH INTELLIGENCE</small></span></a>
+      <div class="header-right"><span class="premium-pill">✦ Premium</span><div class="live-status"><span class="status-dot" id="apiDot"></span><span id="apiStatus">Mode manuel</span></div></div>
+    </header>
+    <main>
+      <section class="hero">
+        <div><div class="kicker">L'analyse de votre semaine</div><h1>Le jeu se lit<br>dans les chiffres.</h1><p>Votre tableau de bord football : calendrier, scores simulés et probabilités de résultat. Ajustez les buts attendus pour explorer différents scénarios.</p></div>
+        <div class="week-card"><div class="week-label">Période sélectionnée</div><div class="week-select"><button id="prevWeek" aria-label="Semaine précédente">‹</button><span class="week-text" id="weekLabel">—</span><button id="nextWeek" aria-label="Semaine suivante">›</button></div></div>
+      </section>
+      <section class="toolbar" aria-label="Filtres et actions">
+        <div class="date-control"><label for="startDate">DU</label><input id="startDate" type="date"></div>
+        <div class="date-control"><label for="endDate">AU</label><input id="endDate" type="date"></div>
+        <div class="toolbar-spacer"></div>
+        <button class="btn btn-quiet" id="apiToggle">⚙ Source des matchs</button>
+        <button class="btn btn-quiet" id="addMatch">＋ Match manuel</button>
+        <button class="btn btn-gold" id="loadMatches">Actualiser les matchs</button>
+      </section>
+      <section class="api-panel" id="apiPanel" aria-label="Configuration de la source des matchs">
+        <p>Connectez une clé API <a href="https://www.football-data.org/client/register" target="_blank" rel="noopener noreferrer">football-data.org</a> pour charger le calendrier. La clé est stockée dans ce navigateur uniquement. Les compétitions disponibles dépendent de votre offre.</p>
+        <div class="api-row"><input id="apiToken" type="password" placeholder="Clé API (X-Auth-Token)" autocomplete="off" aria-label="Clé API"><button class="btn btn-quiet" id="saveToken">Enregistrer</button><button class="btn btn-quiet" id="clearToken">Effacer</button></div>
+      </section>
+      <div class="intro-row"><h2>Vue d'ensemble</h2><span id="resultRange"></span></div>
+      <section class="stats" aria-label="Statistiques de la semaine">
+        <div class="stat"><div class="stat-label">Matchs au programme</div><div class="stat-value" id="matchCount">0</div></div>
+        <div class="stat"><div class="stat-label">Buts prévus / match</div><div class="stat-value" id="avgScore">—</div></div>
+        <div class="stat"><div class="stat-label">Tendance domicile</div><div class="stat-value" id="homeFav">—</div></div>
+        <div class="stat"><div class="stat-label">Scores simulés</div><div class="stat-value" id="simCount">0 <em>scénarios</em></div></div>
+      </section>
+      <div class="intro-row"><h2>Rencontres & simulations</h2><span>Probabilités estimées · 1 / N / 2</span></div>
+      <section class="board">
+        <div class="match-column"><section class="match-list" id="matchList" aria-live="polite"></section></div>
+        <aside class="side-panel">
+          <h3>Comment lire les chiffres</h3>
+          <div class="insight"><div class="insight-title">Score prévisionnel</div><div class="insight-value">Scénario le plus probable</div><div class="insight-desc">La combinaison de buts ayant la probabilité individuelle la plus élevée.</div></div>
+          <div class="insight"><div class="insight-title">1 / N / 2</div><div class="insight-value">Domicile · Nul · Extérieur</div><div class="insight-desc">Probabilités estimées en additionnant les scénarios possibles de buts.</div></div>
+          <div class="insight"><div class="insight-title">Buts attendus (xG)</div><div class="insight-value">Paramètres ajustables</div><div class="insight-desc">Changez les valeurs sur une rencontre pour recalculer immédiatement ses estimations.</div></div>
+          <div class="model-note"><b>Modèle indicatif.</b> La simulation utilise une distribution de Poisson simplifiée, pas les blessures, compositions, forme récente ou cotes du marché.</div>
+        </aside>
+      </section>
+    </main>
+    <footer><span class="disclaimer">FootSimu fournit des simulations statistiques à titre informatif uniquement.</span> Les scores prévisionnels ne sont pas des résultats réels, ne garantissent aucun résultat et ne constituent pas des conseils de pari. Les calendriers proviennent de votre saisie ou du fournisseur API sélectionné.</footer>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
