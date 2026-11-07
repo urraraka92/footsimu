@@ -1,22 +1,22 @@
-# FootSimu ⚽
+# FootSimu Premium ⚽
 
-Petit site web statique en français pour consulter des matchs de football et calculer un score prévisionnel.
+Une interface web responsive en français pour consulter un calendrier de football et simuler les scores de la semaine. Aucun framework ni installation nécessaires.
 
-## Utilisation
+## Démarrer
 
-1. Ouvrez `index.html` dans un navigateur ou publiez le dépôt avec GitHub Pages.
-2. La période affichée par défaut est du **7 au 13 novembre 2026**. Utilisez les flèches ou les dates pour changer de semaine.
-3. Ajoutez des rencontres manuellement avec **Ajouter un match**, ou configurez une clé `football-data.org` via **API des matchs** puis cliquez sur **Charger les matchs**.
-4. Ajustez les buts attendus (xG) pour chaque équipe : les scores et probabilités 1/N/2 se recalculent automatiquement.
+Ouvrez `index.html` dans un navigateur. La période initiale est du **7 au 13 novembre 2026** ; les flèches permettent de parcourir les semaines.
 
-Les matchs et la clé API sont conservés dans le stockage local du navigateur. Les rencontres de l’API dépendent des compétitions auxquelles votre clé donne accès. Sans clé, le site fonctionne aussi en mode manuel.
+### Charger un calendrier
 
-## Modèle de prédiction
+- Configurez une clé API football-data.org via **Source des matchs**, puis cliquez sur **Actualiser les matchs**. La couverture des compétitions et les limites dépendent du compte API.
+- Ou ajoutez des rencontres avec **Match manuel**. Les matchs et la clé sont conservés dans le stockage local du navigateur.
 
-Le site utilise une distribution de Poisson simplifiée sur les buts attendus à domicile et à l’extérieur. Le score affiché est la combinaison la plus probable dans une grille de 0 à 8 buts. Les valeurs initiales (1,45 et 1,12) sont des hypothèses neutres, pas une analyse de forme ou une garantie. Modifiez-les selon vos propres données pour une estimation plus pertinente.
+### Lire les simulations
 
-Les pronostics sont indicatifs uniquement et ne constituent pas des résultats réels ni des conseils de pari.
+Chaque match affiche le score le plus probable et les probabilités 1/N/2. Les paramètres de buts attendus (xG) sont modifiables pour tester des scénarios ; les statistiques de la semaine se recalculent automatiquement.
 
-## Fichiers
+La simulation utilise une distribution de Poisson simplifiée. Les valeurs initiales ne représentent pas des données officielles sur les équipes. Ce site ne garantit aucun résultat et ne fournit pas de conseils de pari.
 
-- `index.html` : application complète (HTML, styles et JavaScript), sans installation ni dépendances externes.
+## Publication
+
+Pour mettre le site en ligne gratuitement, activez GitHub Pages dans les paramètres du dépôt et choisissez la branche contenant `index.html` comme source.
